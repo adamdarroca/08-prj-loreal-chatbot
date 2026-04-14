@@ -1,18 +1,31 @@
 /* DOM elements */
 const chatForm = document.getElementById("chatForm");
 const userInput = document.getElementById("userInput");
-const chatWindow = document.getElementById("chatWindow");
 
-// Set initial message
-chatWindow.textContent = "👋 Hello! How can I help you today?";
+appendMessage("assistant", "Hi, I'm your L’Oréal Beauty Advisor! Ask me anything about our products, beauty routines, skincare, haircare, makeup, or for personalized recommendations. I want to");
 
 /* Handle form submit */
-chatForm.addEventListener("submit", (e) => {
+chatForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  // When using Cloudflare, you'll need to POST a `messages` array in the body,
-  // and handle the response using: data.choices[0].message.content
+  const text = userInput.value.trim();
+  if (!text) return;
+  updateLatestQuestion(text);
+  addUserMessage(text);
+  appendMessage("user", text);
+  userInput.value = "";
+  setLoading(true);
 
-  // Show message
-  chatWindow.innerHTML = "Connect to the OpenAI API for a response!";
+  try{
+    trimMessages(12);
+    const reply = await sendToChatBot(getMessages());
+    appendMessage("assistant", reply);
+    addAssistantMessage(reply);
+  } catch (error) {
+    console.error("Error:", error);
+    appendMessage("assistant", "Sorry, something went wrong. Please try again later.");
+    setStatus("Connection problem.");
+  } finally {
+    setLoading(false);
+  }
 });
