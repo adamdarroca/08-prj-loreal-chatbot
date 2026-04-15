@@ -16,7 +16,11 @@ async function sendToChatBot() {
   }
   const data = await response.json();
   console.log("Response: ", data);
-  const botReply = data?.choices[0]?.message?.content?.trim() ||  data?.reply || data?.error ||
+  const botReply = 
+  data?.choices[0]?.message?.content?.trim() ||
+  data?.reply ||
+  data?.error?.message ||
+  data?.error ||
    "Sorry, I couldn't get a response from the server.";
   return botReply;
 }

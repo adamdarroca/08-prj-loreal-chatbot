@@ -1,11 +1,11 @@
-function appendMessage(role, text){
+function appendMessage(role, text) {
   const chatWindow = document.getElementById("chatWindow");
 
   const row = document.createElement("div");
-  row.className = 'msg-row ${role}';
-  
+  row.className = `msg-row ${role}`;
+
   const msgBubble = document.createElement("div");
-  msgBubble.className = 'msg ${role}';
+  msgBubble.className = `msg ${role}`;
   msgBubble.textContent = text;
 
   row.appendChild(msgBubble);
@@ -14,37 +14,32 @@ function appendMessage(role, text){
   chatWindow.scrollTop = chatWindow.scrollHeight;
 }
 
-function updateLatestQuestion(text){
-  const latestQuestion = document.getElementById("latestQuestion");
-  latestQuestion.textContent = text;
-}
-
-function setStatus(text){
+function setStatus(text) {
   const statusText = document.getElementById("statusText");
-  if (statusText){
+  if (statusText) {
     statusText.textContent = text;
   }
 }
 
-function setLoading(isLoading){
+function setLoading(isLoading) {
   const sendBtn = document.getElementById("sendBtn");
   const userInput = document.getElementById("userInput");
 
   userInput.disabled = isLoading;
   sendBtn.disabled = isLoading;
-  if(isLoading){
+  if (isLoading) {
     userInput.focus();
   }
 
-  if (sendBtn){
+  if (sendBtn) {
     sendBtn.disabled = isLoading;
   }
 
-  if (isLoading){
+  if (isLoading) {
     setStatus("Thinking...");
   } else {
     setStatus("");
-    if(userInput){
+    if (userInput) {
       userInput.focus();
     }
   }

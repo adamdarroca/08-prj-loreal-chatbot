@@ -10,7 +10,6 @@ chatForm.addEventListener("submit", async (e) => {
 
   const text = userInput.value.trim();
   if (!text) return;
-  updateLatestQuestion(text);
   addUserMessage(text);
   appendMessage("user", text);
   userInput.value = "";
