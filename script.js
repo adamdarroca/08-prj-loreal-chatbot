@@ -2,7 +2,7 @@
 const chatForm = document.getElementById("chatForm");
 const userInput = document.getElementById("userInput");
 
-appendMessage("assistant", "Hi, I'm your L’Oréal Beauty Advisor! Ask me anything about our products, beauty routines, skincare, haircare, makeup, or for personalized recommendations. I want to");
+appendMessage("assistant", "Hi, I'm your L’Oréal Beauty Advisor! Ask me anything about our products, beauty routines, skincare, haircare, makeup, or for personalized recommendations. I'm here to help you look and feel your best!");
 
 /* Handle form submit */
 chatForm.addEventListener("submit", async (e) => {
@@ -18,7 +18,7 @@ chatForm.addEventListener("submit", async (e) => {
 
   try{
     trimMessages(12);
-    const reply = await sendToChatBot(getMessages());
+    const reply = await sendToChatBot();
     appendMessage("assistant", reply);
     addAssistantMessage(reply);
   } catch (error) {

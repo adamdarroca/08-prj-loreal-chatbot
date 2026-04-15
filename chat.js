@@ -1,8 +1,7 @@
 const messages = [
   {
     role: "system",
-    content:
-      APP_CONFIG.systemPrompt
+    content: APP_CONFIG.systemPrompt
   },
 ];
 

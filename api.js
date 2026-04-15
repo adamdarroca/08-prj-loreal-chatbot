@@ -1,4 +1,5 @@
-async function sendToChatBot(message) {
+async function sendToChatBot() {
+  console.log("NEW api.js loaded");
 
   const response = await fetch(APP_CONFIG.workerUrl, {
     method: "POST",
@@ -15,6 +16,6 @@ async function sendToChatBot(message) {
   }
   const data = await response.json();
   const botReply = data.choices[0]?.message?.content.trim() ||  
-  data.reply || "Sorry, I couldn't get a response from the server.";
+  data?.reply || "Sorry, I couldn't get a response from the server.";
   return botReply;
 }
