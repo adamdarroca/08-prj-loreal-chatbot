@@ -19,32 +19,22 @@ export default {
     }
 
     try {
-      const apiKey = env.OPENAI_API_KEY;
-      if (!apiKey) {
-        return new Response(JSON.stringify({ error: "Missing OPENAI_API_KEY secret" }), {
-          status: 500,
-          headers: corsHeaders
-        });
-      }
-
-      const body = await request.json();
-
+      const {messages} = await request.json();
       const response = await fetch("https://api.openai.com/v1/chat/completions", {
         method: "POST",
         headers: {
-          "Authorization": `Bearer ${apiKey}`,
+          "Authorization": `Bearer ${env.OPENAI_API_KEY}`,
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          model: "gpt-4o",
-          messages: body.messages,
+          model: "gpt-4.1-mini",
+          messages,
           max_completion_tokens: 300
         })
       });
 
       const data = await response.json();
       return new Response(JSON.stringify(data), {
-        status: response.status,
         headers: corsHeaders
       });
     } catch (error) {
