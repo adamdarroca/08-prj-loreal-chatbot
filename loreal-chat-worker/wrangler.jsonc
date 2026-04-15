@@ -5,7 +5,7 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "loreal-chat-worker",
-	"main": "src/index.js",
+	"main": "../cloudworker.js",
 	"compatibility_date": "2026-04-14",
 	"observability": {
 		"enabled": true
