@@ -20,17 +20,32 @@ function updateLatestQuestion(text){
 }
 
 function setStatus(text){
-  const status = document.getElementById("status");
-  status.textContent = text;
+  const statusText = document.getElementById("statusText");
+  if (statusText){
+    statusText.textContent = text;
+  }
 }
 
 function setLoading(isLoading){
-  const sendButton = document.getElementById("sendButton");
+  const sendBtn = document.getElementById("sendBtn");
   const userInput = document.getElementById("userInput");
 
   userInput.disabled = isLoading;
-  sendButton.disabled = isLoading;
+  sendBtn.disabled = isLoading;
   if(isLoading){
     userInput.focus();
+  }
+
+  if (sendBtn){
+    sendBtn.disabled = isLoading;
+  }
+
+  if (isLoading){
+    setStatus("Thinking...");
+  } else {
+    setStatus("");
+    if(userInput){
+      userInput.focus();
+    }
   }
 }

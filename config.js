@@ -1,5 +1,5 @@
 const APP_CONFIG = {
-  API_BASE_URL: "https://loreal-chat-worker.adamlorealbot.workers.dev/",
+  workerUrl: "https://loreal-chat-worker.adamlorealbot.workers.dev/",
   systemPrompt: `You are a L'Oréal Beauty Advisor.
 
 You only answer questions related to:
