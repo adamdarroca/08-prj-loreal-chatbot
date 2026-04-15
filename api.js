@@ -14,7 +14,7 @@ async function sendToChatBot(message) {
     throw new Error(`Worker failed with status ${response.status}`);
   }
   const data = await response.json();
-  const botReply = data.choices[0]?.message?.content.trim ||  
+  const botReply = data.choices[0]?.message?.content.trim() ||  
   data.reply || "Sorry, I couldn't get a response from the server.";
   return botReply;
 }
